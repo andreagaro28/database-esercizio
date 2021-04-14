@@ -29,7 +29,11 @@ public class CityServlet extends HttpServlet {
 		}else {
 			try {
 				city = cityDao.getCityByName(cityName);
-				request.setAttribute("city", city);
+				if(city == null) {
+					request.setAttribute("noCity", error);
+				}else {
+					request.setAttribute("city", city);	
+				}
 
 			} catch (SQLException e) {
 				e.printStackTrace();
